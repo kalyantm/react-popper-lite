@@ -163,7 +163,7 @@ const positionAtRight = (
   const triggerCoords = triggerElement.getBoundingClientRect()
   return {
     top: triggerCoords.top,
-    left: triggerCoords.right,
+    left: triggerCoords.left + triggerCoords.width,
     transform: getTransform(
       'right',
       orientation,

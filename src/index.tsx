@@ -8,7 +8,7 @@ import measureNode from './utils/measure_node'
 import { ArrowPositions } from './types'
 import useWindowSize from './hooks/useWindowSize'
 
-import styles from './index_styles.scss'
+import * as styles from './index_styles.scss'
 
 const cStyles = classNames.bind(styles)
 
@@ -115,7 +115,7 @@ const Popper = ({
         ...popperPositionStyle,
       }))
     }
-  }, [popperPosition, size, node, autoAdjustPosition])
+  }, [size, node, autoAdjustPosition])
 
   const handleOpen = () => {
     setOpenStatus(true)
@@ -190,19 +190,18 @@ const Popper = ({
 
   return (
     <div className={styles.popover}>
-      <div ref={triggerRef}>
-        {React.cloneElement(children, {
-          ...(trigger === 'click' && { onClick: handleClick }),
-          ...(trigger === 'mouse' && {
-            onMouseEnter: handleMouseEnter,
-            onMouseLeave: handleMouseLeave,
-          }),
-          ...(trigger === 'focus' && {
-            onFocus: handleFocus,
-            onBlur: handleBlur,
-          }),
-        })}
-      </div>
+      {React.cloneElement(children, {
+        ...(trigger === 'click' && { onClick: handleClick }),
+        ...(trigger === 'mouse' && {
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+        }),
+        ...(trigger === 'focus' && {
+          onFocus: handleFocus,
+          onBlur: handleBlur,
+        }),
+        ref: triggerRef,
+      })}
       {openStatus ? (
         <Portal>
           <div

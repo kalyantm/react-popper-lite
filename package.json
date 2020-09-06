@@ -12,7 +12,20 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+      "npm run test"
+    ]
   },
   "dependencies": {
     "@types/classnames": "^2.2.10",
@@ -23,16 +36,29 @@
     "react-dom": ">= 16.8.0 < 2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@testing-library/dom": "^7.24.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@types/jest": "^26.0.12",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-typescript-prettier": "^3.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rollup": "^1.29.0",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^2.8.3"
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
   },
   "files": [
     "dist"

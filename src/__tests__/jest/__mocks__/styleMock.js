@@ -1,3 +1,3 @@
-module.exports = {};
+module.exports = {}
 // eslint-disable-next-line no-undef
-test.skip('Workaround', () => 1);
+test('Workaround', () => expect(1).toBe(1))
